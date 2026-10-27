@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const casos = await getCollection('casos');
+---
+
+<Base
+  title="Audit with Proof — Casos"
+  description="Casos de auditoría de seguridad: draw.io 32.4.1 y Beekeeper Studio 6.1.6"
+/>
+
+<!-- HEAD -->
+<section class="relative overflow-hidden">
+  <div
+    class="pointer-events-none absolute inset-0 opacity-40"
+    style="background-image: radial-gradient(#5c7186 1px, transparent 1px); background-size: 28px 28px;"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-5xl px-6 py-24 sm:py-32">
+    <h2 class="font-display text-3xl font-bold sm:text-4xl text-brand mb-8">
+      Casos de auditoría
+    </h2>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {casos.map((entry) => (
+        <article
+          key={entry.id}
+          class="rounded-2xl border border-muted/40 bg-base p-6 hover:border-brand transition-colors"
+        >
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="font-display text-xl font-bold">{entry.data.titulo}</h3>
+              <p class="mt-2 text-sm text-muted capitalize">
+                {entry.data.version} · {entry.data.fecha}
+              </p>
+            </div>
+            <a
+              href={`/casos/${entry.id}/`}
+              class="rounded-full bg-brand w-8 h-8 flex items-center justify-center text-base text-ink"
+            >
+              >
+            </a>
+          </div>
+          <p class="mt-4 text-sm leading-relaxed text-muted prose">
+            {entry.body.substring(0, 180)}…
+          </p>
+          <a
+            href={`/casos/${entry.id}/`}
+            class="mt-4 inline-flex items-center rounded-full bg-brand px-4 py-2 text-sm font-semibold text-ink transition hover:opacity-90"
+          >
+            Ver informe ·
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="ml-2"
+            >
+              <path d="M5 12hM19 12" />
+              <path d="M12 5hM12 19" />
+            </svg>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+</Base>

@@ -18,6 +18,25 @@ const pilares = [
       'Solo apps open source, propias o autorizadas por escrito. Nunca DRM, anti-cheat ni evasión de licencias.',
   },
 ];
+
+const casos = [
+  {
+    titulo: 'Draw.io 32.4.1',
+    version: '32.4.1',
+    fecha: '2026-10',
+    estado: 'publicado',
+    cuerpo:
+      'Auditado con REA + Ghidra: 0 vulnerabilidades explotables, 92.468 desconocidos, 10 límites declarados. Informe con evidencia verificable y límites declarados (§6).',
+  },
+  {
+    titulo: 'Beekeeper Studio 6.1.6',
+    version: '6.1.6',
+    fecha: '2026-10',
+    estado: 'publicado',
+    cuerpo:
+      'Auditado con REA: consultas SQL seguras, gestor de bases de datos cross-platform. 0 vulnerabilidades conocidas. Informe con evidencia verificable y límites declarados (§6).',
+  },
+];
 ---
 
 <Base
@@ -57,10 +76,13 @@ const pilares = [
           Solicitar auditoría · 48 h · 150 USDT
         </a>
         <a
-          href="#como-trabajamos"
+          href="#casos"
           class="rounded-full border border-muted px-6 py-3 font-semibold text-ink transition hover:border-brand hover:text-brand"
         >
-          Cómo trabajamos
+          Ver casos ·
+          <span class="relative -translate-y-0.5 after:content-[attr(data-after)] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:text-xs after:text-brand after:opacity-0 hover:after:opacity-100"
+          >Ver casos
+          </span>
         </a>
       </div>
     </div>
@@ -69,15 +91,54 @@ const pilares = [
   <!-- TRES PILARES -->
   <section id="como-trabajamos" class="mx-auto max-w-5xl px-6 py-16">
     <div class="grid gap-6 sm:grid-cols-3">
-      {
-        pilares.map((p) => (
-          <article class="rounded-2xl border border-muted/40 bg-base p-6">
-            <div class="h-1 w-12 bg-brand" aria-hidden="true" />
-            <h2 class="mt-4 font-display text-xl font-bold">{p.titulo}</h2>
-            <p class="mt-3 text-sm leading-relaxed text-muted">{p.texto}</p>
-          </article>
-        ))
-      }
+      {pilares.map((p) => (
+        <article class="rounded-2xl border border-muted/40 bg-base p-6">
+          <div class="h-1 w-12 bg-brand" aria-hidden="true" />
+          <h2 class="mt-4 font-display text-xl font-bold">{p.titulo}</h2>
+          <p class="mt-3 text-sm leading-relaxed text-muted">{p.texto}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- SECCIÓN CASOS -->
+  <section id="casos" class="mx-auto max-w-5xl px-6 py-24">
+    <div class="prose max-w-none">
+      <h2 class="font-display text-3xl font-bold text-brand mb-8">
+        Casos de auditoría
+      </h2>
+      {casos.map((c) => (
+        <article
+          key={c.version}
+          class="rounded-2xl border border-muted/40 bg-base p-6 mb-8 hover:border-brand transition-colors"
+        >
+          <h3 class="font-display text-xl font-bold mb-3">{c.titulo}</h3>
+          <p class="text-sm text-muted capitalize mb-2">
+            {c.version} · {c.fecha}
+          </p>
+          <p class="text-muted leading-relaxed mb-4">
+            {c.cuerpo}
+          </p>
+          <a
+            href={`/casos/${c.version}/`}
+            class="inline-flex items-center rounded-full bg-brand px-4 py-2 text-sm font-semibold text-ink transition hover:opacity-90"
+          >
+            Ver informe ·
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="ml-2"
+            >
+              <path d="M5 12hM19 12" />
+              <path d="M12 5hM12 19" />
+            </svg>
+          </a>
+        </article>
+      ))}
     </div>
   </section>
 
