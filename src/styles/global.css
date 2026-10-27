@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* ── Tokens de marca (identidad/BRAND.md — concepto C «LAS BARRAS») ─────────
+   Nada de colores inventados: turquesa #8FE3CF · navy #0A121C · gris #5C7186 */
+@theme {
+  --color-brand: #8fe3cf;
+  --color-base: #0a121c;
+  --color-ink: #ffffff;
+  --color-muted: #5c7186;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Poppins Bold (SIL OFL 1.1 — ver NOTICE.md junto a la fuente): la misma
+   tipografía del vídeo y del generador de marca. Se empaqueta desde src/ para
+   que Vite le aplique el base de GitHub Pages. */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/Poppins-Bold.ttf") format("truetype");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-ink);
+}
