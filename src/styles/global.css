@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ── Tokens de marca (identidad/BRAND.md — concepto C «LAS BARRAS») ─────────
    Nada de colores inventados: turquesa #8FE3CF · navy #0A121C · gris #5C7186 */

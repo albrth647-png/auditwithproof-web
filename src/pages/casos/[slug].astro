@@ -1,0 +1,78 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+// Una URL por caso publicado: /casos/<slug>/
+export async function getStaticPaths() {
+  const casos = await getCollection(
+    'casos',
+    ({ data }) => data.estado === 'publicado',
+  );
+  return casos.map((caso) => ({
+    params: { slug: caso.id },
+    props: { caso },
+  }));
+}
+
+const { caso } = Astro.props;
+const { Content } = await render(caso);
+const d = caso.data;
+
+const RAW = import.meta.env.BASE_URL;
+const B = RAW.endsWith('/') ? RAW.slice(0, -1) : RAW;
+---
+
+<Base
+  title={`${d.titulo} — Audit with Proof`}
+  description={`Caso público de auditoría: ${d.titulo}. Evidencia verificable y límites declarados. Snapshot ${d.fecha}.`}
+>
+  <article class="mx-auto max-w-3xl px-6 py-12">
+    <a href={`${B}/`} class="text-sm text-brand hover:underline">← Inicio</a>
+
+    <header class="mt-6 border-b border-muted/40 pb-8">
+      <p
+        class="font-display text-xs font-bold uppercase tracking-widest text-brand"
+      >
+        Caso público · {d.fecha}
+      </p>
+      <h1 class="mt-3 font-display text-3xl font-bold sm:text-4xl">
+        {d.titulo}
+      </h1>
+
+      <dl class="mt-6 grid gap-4 text-sm sm:grid-cols-2">
+        <div>
+          <dt class="text-muted">Versión analizada</dt>
+          <dd class="mt-1 font-semibold">{d.version}</dd>
+        </div>
+        <div>
+          <dt class="text-muted">Snapshot</dt>
+          <dd class="mt-1 font-semibold">
+            {d.fecha} · derecho de réplica abierto
+          </dd>
+        </div>
+        {
+          d.evidencia && (
+            <div class="sm:col-span-2">
+              <dt class="text-muted">Evidencia (recomputable por un tercero)</dt>
+              <dd class="mt-1 break-all font-mono text-xs text-brand">
+                {d.evidencia}
+              </dd>
+            </div>
+          )
+        }
+        {
+          d.limite && (
+            <div class="sm:col-span-2">
+              <dt class="text-muted">Límite declarado</dt>
+              <dd class="mt-1">{d.limite}</dd>
+            </div>
+          )
+        }
+      </dl>
+    </header>
+
+    <div class="prose prose-invert mt-10 max-w-none">
+      <Content />
+    </div>
+  </article>
+</Base>
