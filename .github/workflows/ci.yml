@@ -28,9 +28,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Fijado a 22.23.4: Astro 7 exige >=22.23.4 y "node-version: 22" en el
+      # runner resolvió a 22.23.3 (un parche por debajo) → build rechazado.
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.23.4
 
       # Sin package-lock.json todavía (el build nunca corre en el móvil):
       # npm install en vez de npm ci. Deuda anotada en WEB.md §8.
