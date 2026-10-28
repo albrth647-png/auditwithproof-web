@@ -13,6 +13,8 @@ const {
 
 const RAW = import.meta.env.BASE_URL;
 const B = RAW.endsWith('/') ? RAW.slice(0, -1) : RAW;
+// og:image tiene que ser absoluta: los crawlers no resuelven relativas.
+const OG = new URL(`${B}/og.png`, import.meta.env.SITE).href;
 const year = new Date().getFullYear();
 ---
 
@@ -27,7 +29,7 @@ const year = new Date().getFullYear();
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${B}/og.png`} />
+    <meta property="og:image" content={OG} />
     <link rel="icon" type="image/png" href={`${B}/favicon.png`} />
   </head>
   <body class="min-h-screen bg-base font-sans text-ink antialiased">
@@ -42,12 +44,18 @@ const year = new Date().getFullYear();
             class="h-9 w-auto"
           />
         </a>
-        <a
-          href="#solicitud"
-          class="rounded-full border border-brand px-4 py-2 text-sm font-semibold text-brand transition hover:bg-brand hover:text-base"
-        >
-          Solicitar auditoría
-        </a>
+        <nav class="flex items-center gap-4">
+          <a href={`${B}/casos/`} class="text-sm font-semibold text-muted transition hover:text-brand">
+            Casos
+          </a>
+          <!-- ancla con base: `#solicitud` a secas solo existe en la home -->
+          <a
+            href={`${B}/#solicitud`}
+            class="rounded-full border border-brand px-4 py-2 text-sm font-semibold text-brand transition hover:bg-brand hover:text-base"
+          >
+            Solicitar auditoría
+          </a>
+        </nav>
       </div>
     </header>
 

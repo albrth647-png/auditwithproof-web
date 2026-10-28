@@ -1,5 +1,29 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+
+// Una sola fuente de verdad: la colección `casos`.
+// Si un caso no está `publicado`, no aparece aquí ni se genera su URL.
+const casos = (await getCollection('casos', ({ data }) => data.estado === 'publicado')).sort(
+  (a, b) => (a.data.fecha < b.data.fecha ? 1 : -1),
+);
+
+// GitHub Pages sirve en /auditwithproof-web/ → todo enlace interno lleva el base.
+const RAW = import.meta.env.BASE_URL;
+const B = RAW.endsWith('/') ? RAW.slice(0, -1) : RAW;
+
+// Resumen de la tarjeta: texto plano sacado del propio .md (nunca inventado).
+function resumen(body: string | undefined, max = 180): string {
+  const texto = (body ?? '')
+    .replace(/^---[\s\S]*?---/, '')
+    .replace(/^#{1,6}\s+.*$/gm, '')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`>|]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return texto.length > max ? `${texto.slice(0, max).trimEnd()}…` : texto;
+}
 
 const pilares = [
   {
@@ -16,25 +40,6 @@ const pilares = [
     titulo: 'Legal por construcción',
     texto:
       'Solo apps open source, propias o autorizadas por escrito. Nunca DRM, anti-cheat ni evasión de licencias.',
-  },
-];
-
-const casos = [
-  {
-    titulo: 'Draw.io 32.4.1',
-    version: '32.4.1',
-    fecha: '2026-10',
-    estado: 'publicado',
-    cuerpo:
-      'Auditado con REA + Ghidra: 0 vulnerabilidades explotables, 92.468 desconocidos, 10 límites declarados. Informe con evidencia verificable y límites declarados (§6).',
-  },
-  {
-    titulo: 'Beekeeper Studio 6.1.6',
-    version: '6.1.6',
-    fecha: '2026-10',
-    estado: 'publicado',
-    cuerpo:
-      'Auditado con REA: consultas SQL seguras, gestor de bases de datos cross-platform. 0 vulnerabilidades conocidas. Informe con evidencia verificable y límites declarados (§6).',
   },
 ];
 ---
@@ -57,9 +62,7 @@ const casos = [
       <p class="font-display text-sm font-bold uppercase tracking-widest text-brand">
         Audit with Proof
       </p>
-      <h1
-        class="mt-4 max-w-3xl font-display text-4xl font-bold leading-tight sm:text-5xl"
-      >
+      <h1 class="mt-4 max-w-3xl font-display text-4xl font-bold leading-tight sm:text-5xl">
         Auditorías de seguridad para apps Electron, con
         <span class="text-brand">evidencia verificable</span>.
       </h1>
@@ -76,13 +79,10 @@ const casos = [
           Solicitar auditoría · 48 h · 150 USDT
         </a>
         <a
-          href="#casos"
+          href={`${B}/casos/`}
           class="rounded-full border border-muted px-6 py-3 font-semibold text-ink transition hover:border-brand hover:text-brand"
         >
-          Ver casos ·
-          <span class="relative -translate-y-0.5 after:content-[attr(data-after)] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:text-xs after:text-brand after:opacity-0 hover:after:opacity-100"
-          >Ver casos
-          </span>
+          Ver casos
         </a>
       </div>
     </div>
@@ -101,41 +101,33 @@ const casos = [
     </div>
   </section>
 
-  <!-- SECCIÓN CASOS -->
-  <section id="casos" class="mx-auto max-w-5xl px-6 py-24">
-    <div class="prose max-w-none">
-      <h2 class="font-display text-3xl font-bold text-brand mb-8">
-        Casos de auditoría
-      </h2>
-      {casos.map((c) => (
-        <article
-          key={c.version}
-          class="rounded-2xl border border-muted/40 bg-base p-6 mb-8 hover:border-brand transition-colors"
-        >
-          <h3 class="font-display text-xl font-bold mb-3">{c.titulo}</h3>
-          <p class="text-sm text-muted capitalize mb-2">
-            {c.version} · {c.fecha}
+  <!-- CASOS (desde la colección: cero hechos duplicados) -->
+  <section id="casos" class="mx-auto max-w-5xl px-6 py-16">
+    <div class="mb-8 flex items-end justify-between gap-4">
+      <h2 class="font-display text-3xl font-bold text-brand">Casos de auditoría</h2>
+      <a href={`${B}/casos/`} class="text-sm font-semibold text-brand hover:underline">
+        Todos los casos →
+      </a>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+      {casos.map((caso) => (
+        <article class="flex flex-col rounded-2xl border border-muted/40 bg-base p-6 transition-colors hover:border-brand">
+          <p class="font-display text-xs font-bold uppercase tracking-widest text-brand">
+            Caso público
           </p>
-          <p class="text-muted leading-relaxed mb-4">
-            {c.cuerpo}
+          <h3 class="mt-2 font-display text-xl font-bold">{caso.data.titulo}</h3>
+          <p class="mt-1 text-sm text-muted">
+            {caso.data.version} · {caso.data.fecha}
+          </p>
+          <p class="mt-4 flex-1 text-sm leading-relaxed text-muted">
+            {resumen(caso.body)}
           </p>
           <a
-            href={`/casos/${c.version}/`}
-            class="inline-flex items-center rounded-full bg-brand px-4 py-2 text-sm font-semibold text-ink transition hover:opacity-90"
+            href={`${B}/casos/${caso.id}/`}
+            class="mt-6 inline-flex items-center self-start rounded-full bg-brand px-4 py-2 text-sm font-semibold text-ink transition hover:opacity-90"
           >
-            Ver informe ·
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              class="ml-2"
-            >
-              <path d="M5 12hM19 12" />
-              <path d="M12 5hM12 19" />
-            </svg>
+            Ver informe →
           </a>
         </article>
       ))}
@@ -145,9 +137,7 @@ const casos = [
   <!-- CTA -->
   <section id="solicitud" class="mx-auto max-w-5xl px-6 pb-20">
     <div class="rounded-2xl border border-brand/60 bg-base p-8 sm:p-10">
-      <h2 class="font-display text-2xl font-bold sm:text-3xl">
-        ¿Tu app es Electron?
-      </h2>
+      <h2 class="font-display text-2xl font-bold sm:text-3xl">¿Tu app es Electron?</h2>
       <p class="mt-3 max-w-2xl text-muted">
         Envíanos el artefacto y la versión. En 48 horas tienes el informe con
         evidencia verificable y los límites declarados.

@@ -42,6 +42,11 @@ jobs:
       - name: Build de Astro
         run: npm run build
 
+      # Sin .nojekyll, Jekyll descarta `_astro/` (CSS/JS con hash) y el sitio
+      # sale sin estilos. El fichero viaja dentro del propio artefacto.
+      - name: Marcar dist como estático (Jekyll off)
+        run: touch dist/.nojekyll
+
       - name: Subir dist como artefacto (revisable sin publicar)
         uses: actions/upload-artifact@v4
         with:
@@ -53,19 +58,30 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && inputs.deploy
     needs: build
     runs-on: ubuntu-latest
+    # Sin `environment`: Pages está en modo `legacy` (sirve la rama gh-pages),
+    # y el environment `github-pages` no existe → el job fallaba antes de
+    # ejecutar ningún paso (steps: []). Con contents:write basta para el push.
     permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
+      contents: write
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
 
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-      - uses: actions/deploy-pages@v4
+      # `dist/` es un directorio suelto: `git init` NO hereda remote ni las
+      # credenciales del checkout → el remoto se pone a mano con el token del run.
+      - name: Publicar dist en la rama gh-pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          cd dist
+          git init -q
+          git checkout -q -b gh-pages
+          git config user.name 'Audit with Proof'
+          git config user.email 'florito64.1@gmail.com'
+          git add -A
+          git commit -q -m "deploy: ${GITHUB_SHA::7}"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin gh-pages
