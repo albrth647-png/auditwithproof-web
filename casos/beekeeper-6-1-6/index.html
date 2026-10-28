@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Beekeeper Studio 6.1.6 — Audit with Proof</title><meta name="description" content="Caso público de auditoría: Beekeeper Studio 6.1.6. Evidencia verificable y límites declarados. Snapshot 2026-10-26."><meta name="theme-color" content="#0a121c"><meta property="og:type" content="website"><meta property="og:title" content="Beekeeper Studio 6.1.6 — Audit with Proof"><meta property="og:description" content="Caso público de auditoría: Beekeeper Studio 6.1.6. Evidencia verificable y límites declarados. Snapshot 2026-10-26."><meta property="og:image" content="https://albrth647-png.github.io/auditwithproof-web/og.png"><meta property="og:url" content="https://albrth647-png.github.io/auditwithproof-web/casos/beekeeper-6-1-6/"><meta property="og:site_name" content="Audit with Proof"><meta property="og:locale" content="es_ES"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://albrth647-png.github.io/auditwithproof-web/casos/beekeeper-6-1-6/"><link rel="icon" type="image/png" href="/auditwithproof-web/favicon.png"><link rel="stylesheet" href="/auditwithproof-web/_astro/Base.Ct0VZD22.css"></head><body class="min-h-screen bg-base font-sans text-ink antialiased"><header class="border-b border-muted/40"><div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4"><a href="/auditwithproof-web/" class="flex items-center" aria-label="Audit with Proof — inicio"><!-- En móvil, el símbolo: el wordmark completo + nav no cabe a 360 px. --><img src="/auditwithproof-web/brand/logo-512.png" alt="Audit with Proof" width="36" height="36" class="h-9 w-9 sm:hidden"><img src="/auditwithproof-web/brand/wordmark.png" alt="Audit with Proof" width="180" height="40" class="hidden h-9 w-auto sm:block"></a><nav aria-label="Principal" class="flex items-center gap-3 sm:gap-4"><a href="/auditwithproof-web/casos/" class="text-sm font-semibold text-muted transition hover:text-brand">Casos</a><!-- ancla con base: `#solicitud` a secas solo existe en la home --><a href="/auditwithproof-web/#solicitud" class="rounded-full border border-brand px-3 py-1.5 text-xs font-semibold text-brand transition hover:bg-brand hover:text-base sm:px-4 sm:py-2 sm:text-sm">Solicitar auditoría</a></nav></div></header><main><article class="mx-auto max-w-3xl px-6 py-12"><a href="/auditwithproof-web/" class="text-sm text-brand hover:underline">← Inicio</a><header class="mt-6 border-b border-muted/40 pb-8"><p class="font-display text-xs font-bold uppercase tracking-widest text-brand">Caso público · 2026-10-26</p><h1 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Beekeeper Studio 6.1.6</h1><dl class="mt-6 grid gap-4 text-sm sm:grid-cols-2"><div><dt class="text-muted">Versión analizada</dt><dd class="mt-1 font-semibold">6.1.6</dd></div><div><dt class="text-muted">Snapshot</dt><dd class="mt-1 font-semibold">2026-10-26 · derecho de réplica abierto</dd></div><div class="sm:col-span-2"><dt class="text-muted">Evidencia (recomputable por un tercero)</dt><dd class="mt-1 break-all font-mono text-xs text-brand">ev_dc211c4b688597c1b42ce2c03ecfc675855a56de6a4985dd2950936a168a2cc2</dd></div><div class="sm:col-span-2"><dt class="text-muted">Límite declarado</dt><dd class="mt-1">§6.2: 8 preguntas que no se pudieron responder</dd></div></dl></header><div class="prose prose-invert mt-10 max-w-none"><h1 id="ficha--beekeeper-studio-616-linux-amd64">FICHA — Beekeeper Studio 6.1.6 (Linux amd64)</h1>
+<p><strong>Qué es:</strong> cliente de bases de datos de escritorio (PostgreSQL, MySQL, SQLite, SQL Server,
+MongoDB, Redis…) que guarda <strong>credenciales de producción</strong> en el equipo del usuario.
+<strong>Por qué importa:</strong> si el renderer de una app así se compromete, lo que hay detrás no es una
+cuenta de red social: son las bases de datos de la empresa.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Versión analizada</td>
+<td><strong>6.1.6</strong> (tag <code>v6.1.6</code>)</td>
+</tr>
+<tr>
+<td>Artefacto</td>
+<td><code>beekeeper-studio_6.1.6_amd64.deb</code> · <strong>281.298.876 B</strong> (268,3 MiB)</td>
+</tr>
+<tr>
+<td>Fecha del snapshot</td>
+<td><strong>2026-10-26</strong></td>
+</tr>
+<tr>
+<td>Modo</td>
+<td><strong>Binario + fuente público</strong> (procedencia declarada en §2.1)</td>
+</tr>
+<tr>
+<td>Evidencia</td>
+<td><code>ev_dc211c4b688597c1b42ce2c03ecfc675855a56de6a4985dd2950936a168a2cc2</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="1-resumen-ejecutivo">1. RESUMEN EJECUTIVO</h2>
+<ol>
+<li>El binario distribuido <strong>coincide con el digest oficial</strong> del release (sha256, §2.1).</li>
+<li>La ventana principal se crea con <strong><code>sandbox: false</code></strong> — el renderer <strong>no</strong> va aislado por el
+sandbox del sistema operativo. Está declarado a propósito en el fuente y <strong>confirmado en los
+bytes del bundle</strong> (§4).</li>
+<li>Esa misma ventana tiene <strong><code>@electron/remote</code> habilitado</strong> (<code>remoteMain.enable(webContents)</code>) y
+el paquete figura como <strong>dependencia directa</strong> del proyecto (§4).</li>
+<li><code>contextIsolation: true</code> y <code>nodeIntegration: false</code> están correctamente configurados: el
+renderer <strong>no</strong> obtiene Node por su cuenta (§4).</li>
+<li>Se resolvieron <strong>11 handlers IPC</strong> (<code>ipcMain.handle</code>) y <strong>10 escuchas</strong> (<code>ipcMain.on</code>) con canal
+literal; <strong>hay más canales que el análisis estático no resolvió</strong> (§4.1 y §6.2).</li>
+<li><strong>Ninguna de estas observaciones es una vulnerabilidad explotada.</strong> Son configuración y
+estructura, verificadas en bytes. Lo que no se pudo comprobar está en §6.</li>
+</ol>
+<hr>
+<h2 id="2-sbom-y-procedencia">2. SBOM Y PROCEDENCIA</h2>
+<h3 id="21-procedencia-del-build">2.1 Procedencia del build</h3>
+<table>
+<thead>
+<tr>
+<th>Comprobación</th>
+<th>Resultado</th>
+<th>Fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tag de referencia</td>
+<td><code>v6.1.6</code></td>
+<td>repositorio público</td>
+</tr>
+<tr>
+<td>Licencia</td>
+<td><strong>GPL-3.0-or-later</strong> (edición Community). Los ficheros bajo <code>**/src-commercial</code> tienen <strong>licencia comercial aparte</strong></td>
+<td><code>LICENSE.md</code> + <code>LICENSE-COMMERCIAL.md</code> del tag</td>
+</tr>
+<tr>
+<td>sha256 del <code>.deb</code> medido en CI</td>
+<td><code>750e29237ae2bd488d69dd994ff1dc5691d3335f9abff9f6def4539bf1302b3c</code></td>
+<td>bytes descargados</td>
+</tr>
+<tr>
+<td>sha256 publicado por GitHub</td>
+<td><code>sha256:750e29237ae2bd488d69dd994ff1dc5691d3335f9abff9f6def4539bf1302b3c</code></td>
+<td>API del release</td>
+</tr>
+<tr>
+<td>Coincidencia</td>
+<td>✅ <strong>idéntico</strong></td>
+<td>las dos anteriores</td>
+</tr>
+<tr>
+<td>Fichero analizado</td>
+<td><code>dist/main.js</code>, extraído del <code>.asar</code> del <code>.deb</code> verificado arriba</td>
+<td><code>input_path</code> de la evidencia (directorio <code>jsdir</code> con el fichero copiado)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Lo que prueba:</strong> que el artefacto analizado es el que el fabricante publicó.
+<strong>Lo que no prueba:</strong> que ese fuente sea seguro. Son afirmaciones distintas.
+<strong>No se hizo</strong> la comparación fichero a fichero del build (§2.3 de la plantilla): esta ficha no
+recompila el proyecto. Se declara en §6.2.</p>
+</blockquote>
+<h3 id="22-dependencias">2.2 Dependencias</h3>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paquetes en el <code>.asar</code></td>
+<td><strong>1.603</strong></td>
+<td>SBOM del artefacto (1.603 líneas <code>nombre@versión</code>)</td>
+</tr>
+<tr>
+<td>Dependencias directas declaradas</td>
+<td><strong>130</strong></td>
+<td><code>package.json</code> del paquete</td>
+</tr>
+<tr>
+<td><code>@electron/remote</code></td>
+<td>instalado <strong>2.1.3</strong> · declarado <code>^2.0.10</code> · <strong>dependencia directa</strong></td>
+<td>SBOM + <code>package.json</code></td>
+</tr>
+<tr>
+<td>Electron</td>
+<td><strong>39.8.10</strong> — <em>declarado</em> en <code>apps/studio/package.json</code> (devDependencies)</td>
+<td>repositorio del tag</td>
+</tr>
+<tr>
+<td>Empaquetador</td>
+<td>electron-builder <code>^26.11.1</code></td>
+<td>repositorio del tag</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>Electron 39.8.10 es una declaración de compilación, no una medida del binario.</strong> El SBOM
+del <code>.asar</code> no contiene el runtime de Electron. Se repite en §6.2.</p>
+</blockquote>
+<hr>
+<h2 id="3-riesgo--dependencias-vulnerables">3. RIESGO — Dependencias vulnerables</h2>
+<p><strong>No incluido en esta ficha.</strong> No se ejecutó un escaneo de CVE contra el SBOM, así que aquí no se
+afirma ni «0 CVE» ni «N CVE». Forma parte del informe completo, no de esta ficha.</p>
+<hr>
+<h2 id="4-exposición--arquitectura-de-seguridad-electron">4. EXPOSICIÓN — Arquitectura de seguridad (Electron)</h2>
+<table>
+<thead>
+<tr>
+<th>Vector</th>
+<th>Estado</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contextIsolation</code></td>
+<td>✅ <strong><code>true</code></strong></td>
+<td>artefacto (<code>literal true</code>) + fuente <code>WindowBuilder.ts:55</code></td>
+</tr>
+<tr>
+<td><code>nodeIntegration</code></td>
+<td>✅ <strong><code>false</code></strong></td>
+<td>artefacto (<code>literal false</code>) + fuente <code>WindowBuilder.ts:54</code></td>
+</tr>
+<tr>
+<td><code>sandbox</code></td>
+<td>🔴 <strong><code>false</code></strong> (explícito)</td>
+<td>artefacto (<code>literal false</code>) + fuente <code>WindowBuilder.ts:57</code> + <strong>bytes del bundle</strong> (<code>sandbox: false</code>)</td>
+</tr>
+<tr>
+<td><code>spellcheck</code></td>
+<td><code>false</code> (explícito)</td>
+<td>artefacto + fuente <code>WindowBuilder.ts:56</code></td>
+</tr>
+<tr>
+<td><code>preload</code></td>
+<td><strong>dinámico</strong> (<code>preloadPath</code>)</td>
+<td>artefacto (<code>dynamic: preloadPath</code>) + fuente <code>WindowBuilder.ts:53</code> + bytes (<code>preload: preloadPath,</code>)</td>
+</tr>
+<tr>
+<td>CSP</td>
+<td><strong>no medida</strong></td>
+<td>ver §6.2</td>
+</tr>
+<tr>
+<td><code>@electron/remote</code></td>
+<td>🔴 <strong>habilitado para la ventana principal</strong></td>
+<td>fuente <code>WindowBuilder.ts:13</code> (<code>require('@electron/remote/main')</code>) y <code>:75</code> (<code>remoteMain.enable(this.win.webContents)</code>) + SBOM</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lectura correcta de <code>sandbox: false</code>:</strong> no significa «sin aislamiento de contexto». Significa que
+el proceso renderer <strong>no</strong> corre dentro del sandbox del sistema operativo de Chromium. Con
+<code>contextIsolation: true</code> y <code>nodeIntegration: false</code>, el renderer sigue sin acceso directo a Node;
+el impacto de un compromiso del renderer es mayor, pero <strong>no se convierte por sí solo en ejecución
+de código en el sistema</strong>. Es configuración, y se reporta como configuración.</p>
+<p><strong>Sobre <code>@electron/remote</code>:</strong> Electron retiró este módulo del núcleo por su superficie de riesgo y
+lo mantiene como paquete aparte, precisamente porque permite al renderer alcanzar objetos del
+proceso main. Aquí está <strong>habilitado</strong> para la ventana principal y es <strong>dependencia directa</strong>. Lo
+que no se pudo determinar es qué llega a exponerse al renderer: depende del preload, y el preload
+es dinámico (§4.2 y §6.2).</p>
+<h3 id="41-canales-ipc-expuestos">4.1 Canales IPC expuestos</h3>
+<p>Registros con <strong>canal literal</strong> en el proceso main, según el artefacto:</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Nº</th>
+<th>Canales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ipcMain.handle</code> (con respuesta)</td>
+<td><strong>11</strong></td>
+<td><code>bksConfigSource</code>, <code>closeWindow</code>, <code>fileHelpers:save</code>, <code>isFullscreen</code>, <code>isMaximized</code>, <code>maximizeWindow</code>, <code>minimizeWindow</code>, <code>platformInfo</code>, <code>requestPorts</code>, <code>setFullscreen</code>, <code>unmaximizeWindow</code></td>
+</tr>
+<tr>
+<td><code>ipcMain.on</code> (escuchas)</td>
+<td><strong>10</strong></td>
+<td>entre ellas <code>menu-click</code> y <code>userActive</code>; una (<code>oe</code>) con nombre <strong>no verificable</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Doble verificación de los 11:</strong> el artefacto los extrae del AST y el grep sobre los bytes del
+bundle devuelve <strong>exactamente los mismos 11</strong> canales en llamadas <code>handle("…")</code>. Coinciden.</p>
+<p><strong>Validación de remitente:</strong> el artefacto declara <strong>0 observaciones</strong>. En los ficheros revisados
+(<code>security.ts</code>, <code>WindowBuilder.ts</code>, <code>queryHandlers.ts</code>) <strong>no se identificó</strong> un validador de
+remitente. No se afirma que no exista: se declara en §6.2.</p>
+<blockquote>
+<p>🔴 <strong>El total de canales es mayor que 21.</strong> <code>apps/studio/src/handlers/queryHandlers.ts</code> declara
+los canales <code>query/execute</code> y <code>query/cancel</code> como claves de un objeto, y <strong>ninguno de los dos
+aparece</strong> entre los 21 registros resueltos. Es decir: hay registros que el análisis estático no
+resolvió. Publicar «21 canales» como total sería falso; el total <strong>no está determinado</strong>.</p>
+</blockquote>
+<h3 id="42-puente-preload">4.2 Puente preload</h3>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Valor</th>
+<th>Fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ruta del preload</td>
+<td><strong>dinámica</strong> (<code>preloadPath</code>)</td>
+<td>artefacto + fuente + bytes</td>
+</tr>
+<tr>
+<td><code>preload_entrypoints</code> resueltos</td>
+<td><strong>0</strong></td>
+<td>artefacto</td>
+</tr>
+<tr>
+<td><code>context_bridge_apis</code> / miembros expuestos</td>
+<td><strong>0 / 0</strong> (no resueltos, no «ninguno»)</td>
+<td>artefacto</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Hallazgo — «preload dinámico no resoluble»:</strong> la ruta se construye en runtime, así que ningún
+análisis estático sabe <strong>qué fichero</strong> corre en el lado privilegiado. Consecuencia: no se puede
+demostrar qué APIs llegan al renderer. No es un límite del método: es un <strong>hallazgo</strong>, y se
+repite como pregunta exacta en §6.2.</p>
+</blockquote>
+<hr>
+<h2 id="5-secretos-embebidos">5. SECRETOS EMBEBIDOS</h2>
+<p><strong>No incluido en esta ficha.</strong> No se ejecutó un escaneo de secretos sobre el bundle. No se afirma
+«0 secretos».</p>
+<hr>
+<h2 id="6-límites-y-desconocidos">6. LÍMITES Y DESCONOCIDOS</h2>
+<h3 id="61-limitaciones-del-análisis">6.1 Limitaciones del análisis</h3>
+<ul>
+<li>El análisis es <strong>estático</strong>: no ejecuta la app ni afirma su comportamiento en runtime.</li>
+<li>La evidencia se generó sobre <strong><code>dist/main.js</code></strong> (proceso main), no sobre el renderer completo. El
+sujeto registrado es el directorio <code>jsdir</code> que el pipeline crea al copiar ese fichero: <strong>no</strong> es
+el <code>.asar</code> completo.</li>
+<li>El grafo retenido está <strong>recortado al tope de 100.000 nodos</strong> (<code>truncated: true</code>, cobertura
+<code>partial</code>). Los conteos de §4 son los que declara el analizador; <strong>no</strong> se recalcularon sobre el
+grafo retenido.</li>
+<li>Solo se observan las dependencias <strong>empaquetadas</strong> en el <code>.asar</code> (1.603), no las de compilación.</li>
+<li>El SBOM del <code>.asar</code> <strong>no incluye el runtime de Electron</strong>: la versión 39.8.10 es declaración del
+repositorio, no medida del binario.</li>
+</ul>
+<h3 id="62-lo-que-no-se-pudo-determinar">6.2 Lo que NO se pudo determinar</h3>
+<table>
+<thead>
+<tr>
+<th>Pregunta</th>
+<th>Por qué no se pudo responder</th>
+<th>Cómo se podría resolver</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>¿Qué preload carga la ventana?</strong></td>
+<td>la ruta es dinámica (<code>preloadPath</code>)</td>
+<td>instrumentación en runtime</td>
+</tr>
+<tr>
+<td><strong>¿Qué APIs llegan al renderer?</strong></td>
+<td>depende del preload anterior</td>
+<td>runtime + revisión del preload compilado</td>
+</tr>
+<tr>
+<td><strong>¿Cuántos canales IPC hay en total?</strong></td>
+<td>hay registros por clave dinámica (<code>query/execute</code>, <code>query/cancel</code> no aparecen)</td>
+<td>resolver el bucle de registro o instrumentar <code>ipcMain</code> en runtime</td>
+</tr>
+<tr>
+<td><strong>¿Valida el remitente cada handler?</strong></td>
+<td>no se identificó un validador; el artefacto declara 0 observaciones</td>
+<td>revisar los 11 módulos de handlers + runtime</td>
+</tr>
+<tr>
+<td><strong>¿El binario corresponde fichero a fichero al fuente?</strong></td>
+<td>no se recompiló el proyecto (§2.3)</td>
+<td>build reproducible y comparación fichero a fichero</td>
+</tr>
+<tr>
+<td><strong>¿Hay CVEs en las 1.603 dependencias?</strong></td>
+<td>no se ejecutó escaneo (§3)</td>
+<td>escaneo contra OSV/GHSA + contexto de explotabilidad</td>
+</tr>
+<tr>
+<td><strong>¿Hay secretos embebidos?</strong></td>
+<td>no se ejecutó escaneo (§5)</td>
+<td>escaneo de secretos sobre el bundle</td>
+</tr>
+<tr>
+<td><strong>¿Qué CSP aplica la app?</strong></td>
+<td>no se extrajo el HTML/CSP del renderer</td>
+<td>leer el <code>index.html</code> empaquetado y las cabeceras</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="7-evidencia">7. EVIDENCIA</h2>
+<table>
+<thead>
+<tr>
+<th>Qué</th>
+<th>Dónde</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evidencia del análisis (proceso main)</td>
+<td><code>evidencia-js.json</code> · <code>evidence_id ev_dc211c4b688597c1b42ce2c03ecfc675855a56de6a4985dd2950936a168a2cc2</code></td>
+</tr>
+<tr>
+<td>Muestras verificables en KB (bytes crudos)</td>
+<td><code>muestras.txt</code> del run <code>40368945575</code> (2.331 B)</td>
+</tr>
+<tr>
+<td>Run de la evidencia</td>
+<td><code>40365009151</code> · repo <code>albrth647-png/Ghidra</code> · workflow <code>rea-audit.yml</code></td>
+</tr>
+<tr>
+<td>Integridad del artefacto</td>
+<td>sha256 medido = digest oficial (§2.1)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cómo se verificó cada hecho de §4</strong> (regla: ningún dato con una sola fuente):</p>
+<table>
+<thead>
+<tr>
+<th>Hecho</th>
+<th>Fuente 1 (artefacto)</th>
+<th>Fuente 2 (fuente)</th>
+<th>Fuente 3 (bytes)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sandbox: false</code></td>
+<td><code>literal false</code></td>
+<td><code>WindowBuilder.ts:57</code></td>
+<td><code>sandbox: false</code></td>
+</tr>
+<tr>
+<td><code>nodeIntegration: false</code></td>
+<td><code>literal false</code></td>
+<td><code>WindowBuilder.ts:54</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>contextIsolation: true</code></td>
+<td><code>literal true</code></td>
+<td><code>WindowBuilder.ts:55</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>preload</code> dinámico</td>
+<td><code>dynamic: preloadPath</code></td>
+<td><code>WindowBuilder.ts:53</code></td>
+<td><code>preload: preloadPath,</code></td>
+</tr>
+<tr>
+<td><code>@electron/remote</code> habilitado</td>
+<td>paquete en SBOM (2.1.3)</td>
+<td><code>WindowBuilder.ts:13,75</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>11 handlers literales</td>
+<td>11 nodos <code>handle</code></td>
+<td>—</td>
+<td>11 canales <code>handle("…")</code> idénticos</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="8-recomendaciones-priorizadas">8. RECOMENDACIONES PRIORIZADAS</h2>
+<ol>
+<li><strong>Revisar si <code>sandbox: false</code> es necesario.</strong> Si no lo es, activarlo; si lo es, documentar por qué
+y qué lo compensa.</li>
+<li><strong>Revisar el uso de <code>@electron/remote</code>.</strong> Está habilitado para la ventana principal y es
+dependencia directa: confirmar qué necesita y si puede sustituirse por IPC explícito.</li>
+<li><strong>Hacer explícita la ruta del preload</strong> (o publicar su hash) para que la superficie privilegiada
+sea auditable de forma estática.</li>
+<li><strong>Documentar la validación de remitente</strong> en los handlers IPC (o añadirla donde falte).</li>
+<li><strong>Publicar la versión de Electron del binario</strong> (o el SBOM del runtime) para que la declaración
+del repositorio y el artefacto sean la misma cosa.</li>
+</ol>
+<hr>
+<p><em>Ficha generada el 2026-10-26 sobre el artefacto publicado. Una ficha caduca: se fecha, no se
+reescribe. Los hechos son los medidos; lo que no se midió está en §6 y no se afirma.</em></p>
+</div></article></main><footer class="border-t border-muted/40"><div class="mx-auto max-w-5xl px-6 py-10 text-sm text-muted"><div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><img src="/auditwithproof-web/brand/wordmark.png" alt="Audit with Proof" width="160" height="36" class="h-8 w-auto"><p class="text-ink">48 h · 150 USDT (USDT o USDC en TRC-20 / BEP-20)</p></div><p class="mt-4">Solo apps <strong class="text-ink">open source</strong>, propias o autorizadas por escrito ·<a href="mailto:florito64.1@gmail.com" class="text-brand hover:underline">florito64.1@gmail.com</a></p><p class="mt-2"><a href="/auditwithproof-web/privacidad/" class="text-brand hover:underline">Privacidad</a>·<a href="/auditwithproof-web/terminos/" class="text-brand hover:underline">Términos del servicio</a></p><p class="mt-2">© 2026 Audit with Proof</p></div></footer></body></html>

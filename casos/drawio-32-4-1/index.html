@@ -1,0 +1,976 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>draw.io Desktop 32.4.1 — Audit with Proof</title><meta name="description" content="Caso público de auditoría: draw.io Desktop 32.4.1. Evidencia verificable y límites declarados. Snapshot 2026-10-16."><meta name="theme-color" content="#0a121c"><meta property="og:type" content="website"><meta property="og:title" content="draw.io Desktop 32.4.1 — Audit with Proof"><meta property="og:description" content="Caso público de auditoría: draw.io Desktop 32.4.1. Evidencia verificable y límites declarados. Snapshot 2026-10-16."><meta property="og:image" content="https://albrth647-png.github.io/auditwithproof-web/og.png"><meta property="og:url" content="https://albrth647-png.github.io/auditwithproof-web/casos/drawio-32-4-1/"><meta property="og:site_name" content="Audit with Proof"><meta property="og:locale" content="es_ES"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://albrth647-png.github.io/auditwithproof-web/casos/drawio-32-4-1/"><link rel="icon" type="image/png" href="/auditwithproof-web/favicon.png"><link rel="stylesheet" href="/auditwithproof-web/_astro/Base.Ct0VZD22.css"></head><body class="min-h-screen bg-base font-sans text-ink antialiased"><header class="border-b border-muted/40"><div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4"><a href="/auditwithproof-web/" class="flex items-center" aria-label="Audit with Proof — inicio"><!-- En móvil, el símbolo: el wordmark completo + nav no cabe a 360 px. --><img src="/auditwithproof-web/brand/logo-512.png" alt="Audit with Proof" width="36" height="36" class="h-9 w-9 sm:hidden"><img src="/auditwithproof-web/brand/wordmark.png" alt="Audit with Proof" width="180" height="40" class="hidden h-9 w-auto sm:block"></a><nav aria-label="Principal" class="flex items-center gap-3 sm:gap-4"><a href="/auditwithproof-web/casos/" class="text-sm font-semibold text-muted transition hover:text-brand">Casos</a><!-- ancla con base: `#solicitud` a secas solo existe en la home --><a href="/auditwithproof-web/#solicitud" class="rounded-full border border-brand px-3 py-1.5 text-xs font-semibold text-brand transition hover:bg-brand hover:text-base sm:px-4 sm:py-2 sm:text-sm">Solicitar auditoría</a></nav></div></header><main><article class="mx-auto max-w-3xl px-6 py-12"><a href="/auditwithproof-web/" class="text-sm text-brand hover:underline">← Inicio</a><header class="mt-6 border-b border-muted/40 pb-8"><p class="font-display text-xs font-bold uppercase tracking-widest text-brand">Caso público · 2026-10-16</p><h1 class="mt-3 font-display text-3xl font-bold sm:text-4xl">draw.io Desktop 32.4.1</h1><dl class="mt-6 grid gap-4 text-sm sm:grid-cols-2"><div><dt class="text-muted">Versión analizada</dt><dd class="mt-1 font-semibold">32.4.1</dd></div><div><dt class="text-muted">Snapshot</dt><dd class="mt-1 font-semibold">2026-10-16 · derecho de réplica abierto</dd></div><div class="sm:col-span-2"><dt class="text-muted">Evidencia (recomputable por un tercero)</dt><dd class="mt-1 break-all font-mono text-xs text-brand">ev_a94efae81586d359238a5eb1cd34b9a9ed8da7748c3f9a86d4757fe855435ca8 · ev_f0e4202c3b188da10f4be9b3693006b0ba64e3483e7ea100916e388dd413fc2e · ev_9ec17cfca1a869df4352fd6e5db03285c014f0efc2024a30ec924c337c7a22f0</dd></div><div class="sm:col-span-2"><dt class="text-muted">Límite declarado</dt><dd class="mt-1">§6 declara los límites y los desconocidos; §7, la evidencia verificable</dd></div></dl></header><div class="prose prose-invert mt-10 max-w-none"><h1 id="informe-de-auditoría--drawio-desktop-3241">INFORME DE AUDITORÍA — draw.io Desktop 32.4.1</h1>
+<blockquote>
+<p>🟢 <strong>INFORME DE MUESTRA PÚBLICA</strong> — el producto real que se entrega en el
+paquete Entrada (150 USDT). Objetivo <strong>open-source</strong> (GPL-3.0) analizado
+bajo permiso implícito de su licencia. Sin cliente real: esto es la demo.</p>
+<p><strong>Documentos enlazados:</strong> <a href="https://github.com/albrth647-png/electron-security-audit/blob/main/docs/es/plantilla-informe.md">plantilla</a> · <a href="https://github.com/albrth647-png/electron-security-audit/blob/main/docs/es/autorizacion.md">autorización</a> ·
+<a href="https://github.com/albrth647-png/electron-security-audit/blob/main/docs/es/proforma.md">proforma</a> · índice de la oferta (interno) · PLAN-EJECUCION (interno)</p>
+</blockquote>
+<hr>
+<h2 id="metadatos-del-encargo">METADATOS DEL ENCARGO</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cliente</strong></td>
+<td>— (muestra pública)</td>
+</tr>
+<tr>
+<td><strong>App auditada</strong></td>
+<td><strong>draw.io Desktop v32.4.1</strong> (JGraph)</td>
+</tr>
+<tr>
+<td><strong>Artefacto</strong></td>
+<td><code>drawio-amd64-32.4.1.deb</code> (116,3 MB) · release <code>jgraph/drawio-desktop v32.4.1</code></td>
+</tr>
+<tr>
+<td><strong>SHA-256 del artefacto</strong></td>
+<td><code>f4455b3bba3d3b539c3cd069218fc64f0462b1b01610fe8d11acc3ca8566f32b</code></td>
+</tr>
+<tr>
+<td><strong>Verificado contra hash oficial</strong></td>
+<td>✅ <strong>Sí</strong> — coincide con <code>Files-SHA256-Hashes.txt</code> de la propia release</td>
+</tr>
+<tr>
+<td><strong>Fecha de recepción</strong></td>
+<td>2026-10-16 (recepción y entrega el mismo día — el artefacto es público)</td>
+</tr>
+<tr>
+<td><strong>Fecha de entrega</strong></td>
+<td>2026-10-16 (plazo contratado: 48 h)</td>
+</tr>
+<tr>
+<td><strong>Analista</strong></td>
+<td><a href="https://github.com/albrth647-png">albrth647-png</a> · motor <strong>REA 6.5.0 + Ghidra 12.1.4</strong></td>
+</tr>
+<tr>
+<td><strong>Alcance acordado</strong></td>
+<td>Paquete <strong>Entrada</strong> — ver <a href="https://github.com/albrth647-png/electron-security-audit/blob/main/docs/es/proforma.md">proforma</a></td>
+</tr>
+<tr>
+<td><strong>Licencia del objetivo</strong></td>
+<td>GPL-3.0-only (análisis de código público, permitido)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejecuciones de análisis</strong> (ambas en GitHub Actions, artefacto descargado y analizado <em>en la nube</em>; el operador solo recibió KB de evidencia):</p>
+<table>
+<thead>
+<tr>
+<th>Run</th>
+<th>Alcance</th>
+<th>Resultado</th>
+<th>Duración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/albrth647-png/Ghidra/actions/runs/38856900076"><code>38856900076</code></a></td>
+<td><code>app.asar</code> <strong>completo</strong> (inventario amplio) + nativo Ghidra</td>
+<td>⚠️ Parcial (límite de 300 s) + ✅ nativo completo</td>
+<td>9 m 15 s</td>
+</tr>
+<tr>
+<td><a href="https://github.com/albrth647-png/Ghidra/actions/runs/38858685634"><code>38858685634</code></a></td>
+<td><strong>Proceso main</strong> (<code>src/main</code>) — vectores Electron</td>
+<td>✅ <strong>Completo</strong></td>
+<td>~40 s</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="1-resumen-ejecutivo">1. RESUMEN EJECUTIVO</h2>
+<p><strong>Estado global:</strong> 🟢 <strong>Sin hallazgos críticos.</strong> La postura de seguridad base de draw.io es correcta; los puntos a vigilar son de <strong>cobertura y mantenimiento</strong>, no de fallo activo.</p>
+<p><strong>Hallazgos en una línea:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dependencias con versión (SBOM)</td>
+<td><strong>82</strong> paquetes (9 directas)</td>
+</tr>
+<tr>
+<td>CVEs activos (cruce de 5 candidatos con BD públicas)</td>
+<td><strong>0</strong> — todas las versiones están en rangos corregidos</td>
+</tr>
+<tr>
+<td>Ventanas BrowserWindow</td>
+<td><strong>5</strong> → 4 con configuración verificable, <strong>1 dinámica NO verificable</strong></td>
+</tr>
+<tr>
+<td>Config correcta donde se pudo ver</td>
+<td>✅ <code>contextIsolation:true</code> + <code>nodeIntegration:false</code> + <code>webSecurity:true</code> + <code>webviewTag:false</code> en <strong>4/4</strong></td>
+</tr>
+<tr>
+<td>Superficie IPC</td>
+<td><strong>35 operaciones</strong> · 28 canales literales · 29 handlers en main</td>
+</tr>
+<tr>
+<td>Validación de sender observada</td>
+<td><strong>2 candidatos</strong> de 29 handlers (enforcement <strong>desconocido</strong>)</td>
+</tr>
+<tr>
+<td>Secretos embebidos (alcance auditado)</td>
+<td><strong>0</strong> detectados</td>
+</tr>
+<tr>
+<td>Duplicidad en el árbol de dependencias</td>
+<td><strong>3 familias</strong> (debug, ms, semver)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recomendación principal:</strong> revisar manualmente la ventana construida con opciones <strong>dinámicas</strong> (<code>electron.js:565</code>) y ampliar la validación de sender en los canales IPC; ninguna exige acción inmediata.</p>
+<hr>
+<h2 id="2-sbom--árbol-de-dependencias">2. SBOM — Árbol de dependencias</h2>
+<h3 id="21-métricas-de-inventario-run-1--asar-completo">2.1 Métricas de inventario (run 1 — asar completo)</h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ficheros relevantes inventariados</td>
+<td><strong>1.292</strong></td>
+<td><code>ev_a94efae8…</code></td>
+</tr>
+<tr>
+<td>Bytes de texto leídos</td>
+<td><strong>34.027.540</strong> (34 MB)</td>
+<td><code>ev_a94efae8…</code></td>
+</tr>
+<tr>
+<td>Nodos AST visitados</td>
+<td><strong>3.267.398</strong></td>
+<td><code>ev_a94efae8…</code></td>
+</tr>
+<tr>
+<td>Hallazgos emitidos</td>
+<td><strong>3.246</strong></td>
+<td><code>ev_a94efae8…</code></td>
+</tr>
+<tr>
+<td>Fallos de parseo</td>
+<td><strong>0</strong></td>
+<td><code>ev_a94efae8…</code></td>
+</tr>
+<tr>
+<td>Grafo de aplicación</td>
+<td>4.804 nodos · 7.121 aristas</td>
+<td><code>jag_25dd177b…</code></td>
+</tr>
+<tr>
+<td>Grafo semántico</td>
+<td>33.455 nodos · 19.074 relaciones</td>
+<td><code>jsrg_7814efb4…</code></td>
+</tr>
+<tr>
+<td><strong>Desconocidos declarados</strong></td>
+<td><strong>92.468</strong></td>
+<td>ver §6</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-dependencias-directas-9--del-manifiesto-empaquetado">2.2 Dependencias directas (9) — del manifiesto empaquetado</h3>
+<table>
+<thead>
+<tr>
+<th>Paquete</th>
+<th>Declarado</th>
+<th>Instalado (lockfile)</th>
+<th>Rol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>electron-updater</code></td>
+<td>^6.8.9</td>
+<td><strong>6.8.9</strong></td>
+<td>auto-actualización</td>
+</tr>
+<tr>
+<td><code>electron-store</code></td>
+<td>^11.0.2</td>
+<td><strong>11.0.2</strong></td>
+<td>persistencia local (<code>.configuration</code>)</td>
+</tr>
+<tr>
+<td><code>electron-log</code></td>
+<td>^5.4.4</td>
+<td><strong>5.4.4</strong></td>
+<td>logs</td>
+</tr>
+<tr>
+<td><code>electron-context-menu</code></td>
+<td>^5.1.0</td>
+<td><strong>5.1.0</strong></td>
+<td>UI</td>
+</tr>
+<tr>
+<td><code>@cantoo/pdf-lib</code></td>
+<td>^2.7.3</td>
+<td><strong>2.11.1</strong></td>
+<td>generación PDF</td>
+</tr>
+<tr>
+<td><code>compression</code></td>
+<td>^1.8.1</td>
+<td><strong>1.8.2</strong></td>
+<td>HTTP</td>
+</tr>
+<tr>
+<td><code>crc</code></td>
+<td>^4.3.2</td>
+<td><strong>4.3.2</strong></td>
+<td>checksums</td>
+</tr>
+<tr>
+<td><code>buffer</code></td>
+<td>^6.0.3</td>
+<td><strong>6.0.3</strong></td>
+<td>polyfill</td>
+</tr>
+<tr>
+<td><code>tslib</code></td>
+<td>^2.8.1</td>
+<td><strong>2.8.1</strong></td>
+<td>runtime TS</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Runtime Electron:</strong> el manifiesto del asar <strong>no</strong> declara Electron (es devDependency de build).
+Fuente externa verificada hoy: <code>package-lock.json</code> del tag <code>v32.4.1</code> → <strong>Electron 44.7.0</strong>,
+<code>electron-builder</code> 26.17.0. <strong>No se pudo confirmar desde el propio artefacto</strong> → §6.</p>
+</blockquote>
+<h3 id="23-sbom-completo-82-paquetes-con-versión">2.3 SBOM completo: 82 paquetes con versión</h3>
+<blockquote>
+<p>Lista íntegra en <a href="https://github.com/albrth647-png/electron-security-audit/blob/main/evidence/sbom-drawio-32.4.1.txt"><code>evidencia/sbom-drawio-32.4.1.txt</code></a>
+(derivada de cada <code>package.json</code> de <code>node_modules</code> <strong>dentro del asar</strong>).</p>
+</blockquote>
+<p>Fragmento:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>electron-updater@6.8.9      electron-store@11.0.2     electron-log@5.4.4</span></span>
+<span class="line"><span>@cantoo/pdf-lib@2.11.1      ajv@8.20.0                semver@7.7.4 / 7.8.5</span></span>
+<span class="line"><span>builder-util-runtime@9.7.0  electron-dl@5.0.0         fs-extra@10.1.0</span></span>
+<span class="line"><span>debug@2.6.9 / 4.4.3         ms@2.0.0 / 2.1.3          graceful-fs@4.2.11</span></span>
+<span class="line"><span>… (82 en total)</span></span></code></pre>
+<h3 id="24-hallazgos-del-árbol">2.4 Hallazgos del árbol</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Hallazgo</th>
+<th>Detalle</th>
+<th>Riesgo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>3 familias duplicadas</strong></td>
+<td><code>debug</code> (2.6.9 <strong>y</strong> 4.4.3) · <code>ms</code> (2.0.0 <strong>y</strong> 2.1.3) · <code>semver</code> (7.7.4 <strong>y</strong> 7.8.5)</td>
+<td>🟡 Inconsistencia — dos líneas de mantenimiento conviven</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Línea antigua empaquetada</strong></td>
+<td><code>debug@2.6.9</code> (rama 2017) llega vía dependencia transita</td>
+<td>🟡 Señal de árbol envejecido (no CVE activo, ver §3)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Dependencias que no esperabas</td>
+<td><code>ajv</code>+<code>ajv-formats</code> (JSON-Schema), <code>negotiator@0.6.4</code>, <code>on-headers@1.1.0</code> — cadena de <code>compression</code>/HTTP</td>
+<td>🟡 Superficie transita heredada de la cadena <code>compression → http</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-riesgo--cruce-de-vulnerabilidades-cve">3. RIESGO — Cruce de vulnerabilidades (CVE)</h2>
+<blockquote>
+<p><strong>Método:</strong> cruce de las versiones del SBOM con <strong>BD públicas</strong> (NVD/GitHub Advisory/GitLab GLAD/Snyk)
+— consulta <strong>2026-10-16</strong>. Alcance de esta muestra: <strong>5 candidatos relevantes</strong>, no todo el catálogo NVD (§6.7).</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>CVE / GHSA</th>
+<th>Producto</th>
+<th>Afecta a</th>
+<th>Instalado</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>CVE-2024-39698</strong> (GHSA-9jxc-qjr9-vjxq)</td>
+<td><code>electron-updater</code> — validación de firma Windows manipulable</td>
+<td><code>&lt; 6.3.0-alpha.6</code></td>
+<td><strong>6.8.9</strong></td>
+<td>✅ <strong>No afecta</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>CVE-2026-54673</strong> (GHSA-p2f4-r6v6-j797)</td>
+<td><code>builder-util-runtime</code> — cabeceras de credencial filtradas en redirect</td>
+<td><code>&lt; 9.7.0</code></td>
+<td><strong>9.7.0</strong></td>
+<td>✅ <strong>Corregido</strong> — <em>en el suelo exacto del fix</em></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>CVE-2026-54672</strong> (GHSA-7g7r-gx96-252g)</td>
+<td><code>app-builder-lib</code>/<code>electron-builder</code> — <code>LD_LIBRARY_PATH</code> en AppImage (build)</td>
+<td><code>&lt; 26.15.0</code></td>
+<td><strong>26.17.0</strong></td>
+<td>✅ <strong>Corregido</strong> (fase de build; ver §6.6)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>CVE-2026-102672</strong> (GHSA-vv43-5jgx-7qv8)</td>
+<td><strong>Electron</strong> — race en Squirrel.Mac (solo macOS)</td>
+<td>rangos <code>≤39.8.x / ≤41.10.4 / &lt;42.0.0-beta.2</code></td>
+<td><strong>44.7.0</strong></td>
+<td>✅ <strong>No afecta</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>CVE-2026-70604</strong> (GHSA-v3j7-r9gq-3gjw)</td>
+<td><strong>Electron</strong> — CORS de esquemas custom con <code>supportFetchAPI</code></td>
+<td><code>≤39.8.9 / 40.≤9.3 / 41.≤4.0 / &lt;42.0.0</code></td>
+<td><strong>44.7.0</strong></td>
+<td>✅ <strong>No afecta</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="31-contexto-del-riesgo">3.1 Contexto del riesgo</h3>
+<ul>
+<li><strong>Ninguno de los 5 CVEs consultados afecta</strong> a esta build — la higiene de dependencias de draw.io es <strong>buena</strong> (mantenedor activo, Electron reciente 44.7.0).</li>
+<li><strong>Único matiz:</strong> <code>builder-util-runtime</code> está <strong>justo en 9.7.0</strong>, la primera versión corregida de CVE-2026-54673 — <strong>margen cero</strong>: cualquier pin por debajo (resolución de lockfile antiguo, espejo desactualizado) lo haría vulnerable. Merece vigilancia, no pánico.</li>
+<li>Corroboración externa: Snyk reporta <em>“3 vulnerabilities, none affect the latest version (6.8.9)”</em> para <code>electron-updater</code>.</li>
+</ul>
+<h3 id="32-cadena-de-dependencia-ejemplo">3.2 Cadena de dependencia (ejemplo)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>draw.io → electron-updater@6.8.9 → builder-util-runtime@9.7.0  ← suelo del fix CVE-2026-54673</span></span>
+<span class="line"><span>draw.io → compression@1.8.2 → negotiator@0.6.4 / on-headers@1.1.0  (cadena HTTP heredada)</span></span></code></pre>
+<hr>
+<h2 id="4-exposición--arquitectura-de-seguridad-electron">4. EXPOSICIÓN — Arquitectura de seguridad (Electron)</h2>
+<blockquote>
+<p>Datos del <strong>run 2</strong> (proceso main completo) — <code>ev_f0e4202c…</code>.</p>
+</blockquote>
+<h3 id="41-vectores-globales">4.1 Vectores globales</h3>
+<table>
+<thead>
+<tr>
+<th>Vector</th>
+<th>Estado</th>
+<th>Riesgo</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contextIsolation</code></td>
+<td>✅ <code>true</code> en <strong>4/4</strong> ventanas con opciones literales</td>
+<td>🟢</td>
+<td><code>ev_f0e4202c…</code></td>
+</tr>
+<tr>
+<td><code>nodeIntegration</code></td>
+<td>✅ <code>false</code> en <strong>4/4</strong></td>
+<td>🟢</td>
+<td><code>ev_f0e4202c…</code></td>
+</tr>
+<tr>
+<td><code>webSecurity</code></td>
+<td>✅ <code>true</code> en <strong>4/4</strong></td>
+<td>🟢</td>
+<td><code>ev_f0e4202c…</code></td>
+</tr>
+<tr>
+<td><code>webviewTag</code></td>
+<td>✅ <code>false</code> en <strong>4/4</strong></td>
+<td>🟢</td>
+<td><code>ev_f0e4202c…</code></td>
+</tr>
+<tr>
+<td><code>sandbox</code></td>
+<td>🟠 <code>true</code> declarado solo en <strong>1/5</strong> (<code>progress-bar.js</code>) — las demás <strong>no lo declaran</strong> y REA <strong>no asume defaults</strong> (<code>absence_means_default:false</code>)</td>
+<td>🟡</td>
+<td><code>ev_f0e4202c…</code></td>
+</tr>
+<tr>
+<td>CSP (Content-Security-Policy)</td>
+<td>⬜ <strong>No evidenciada en este alcance</strong> (vive en el HTML del renderer, fuera del proceso main)</td>
+<td>⬜ §6.5</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-las-5-ventanas-browserwindow">4.2 Las 5 ventanas (<code>BrowserWindow</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Ubicación</th>
+<th><code>contextIsolation</code></th>
+<th><code>nodeIntegration</code></th>
+<th><code>sandbox</code></th>
+<th>Preload</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>electron.js:911-921</code></td>
+<td>✅ true</td>
+<td>✅ false</td>
+<td>⬜ no declarado</td>
+<td><code>electron-preload.js</code> (expresión dinámica)</td>
+<td>Ventana principal</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong><code>electron.js:565</code></strong></td>
+<td>⚠️ <strong>DINÁMICA</strong></td>
+<td>⚠️ <strong>DINÁMICA</strong></td>
+<td>⚠️ DINÁMICA</td>
+<td>—</td>
+<td><strong>Opciones no literales → NO verificables estáticamente</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>progress-bar.js:36-53</code></td>
+<td>✅ true</td>
+<td>✅ false</td>
+<td>✅ <strong>true</strong></td>
+<td>—</td>
+<td><strong>Config más estricta</strong> del conjunto</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>electron.js:3094-3111</code> (offscreen)</td>
+<td>✅ true</td>
+<td>✅ false</td>
+<td>⬜ no declarado</td>
+<td><code>electron-preload.js</code> (dinámico)</td>
+<td><code>offscreen</code> parcialmente dinámico</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>electron.js:1228-1238</code></td>
+<td>✅ true</td>
+<td>✅ false</td>
+<td>⬜ no declarado</td>
+<td><code>electron-preload.js</code> (dinámico)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>25 webPreferences</code> explícitos contados en total · <code>preload_entrypoints: 0</code> — el preload <strong>se referencia</strong> con plantillas dinámicas (<code>`${__dirname}/…`</code>) pero <strong>no se resuelve como entrypoint</strong> → §6.</p>
+<p><strong>Hallazgo — «preload dinámico no resoluble»:</strong> las 3 ventanas que usan <code>electron-preload.js</code>
+lo referencian con una plantilla que no se resuelve estáticamente, así que <strong>no se puede
+demostrar qué preload carga cada una</strong>. No se declara inseguro: se declara <strong>no demostrado</strong> (§6.2).</p>
+</blockquote>
+<h3 id="43-canales-ipc-expuestos-35-operaciones">4.3 Canales IPC expuestos (35 operaciones)</h3>
+<p><strong>29 handlers en main · 28 canales literales · 3 operaciones dinámicas · 0 sin emparejar (<code>unpaired_literal: 0</code>)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Grupo</th>
+<th>Canales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ficheros / edición</strong></td>
+<td><code>export</code> · <code>export-error</code> · <code>export-finalize</code> · <code>import-success</code> · <code>import-error</code> · <code>svg-data</code> · <code>xml-data</code> · <code>xml-data-error</code> · <code>newfile</code> · <code>fileChanged</code> · <code>draftRemoved</code> · <code>isModified-result</code> · <code>saveAndClose-result</code></td>
+</tr>
+<tr>
+<td><strong>Ventana / UI</strong></td>
+<td><code>zoomIn</code> · <code>zoomOut</code> · <code>resetZoom</code> · <code>toggleFullscreen</code> · <code>openDevTools</code></td>
+</tr>
+<tr>
+<td><strong>Actualizaciones</strong></td>
+<td><code>checkForUpdates</code> · <code>installUpdate</code> · <code>toggleAutoUpdate</code></td>
+</tr>
+<tr>
+<td><strong>Configuración</strong></td>
+<td><code>toggleSpellCheck</code> · <code>toggleGoogleFonts</code> · <code>toggleStoreBkp</code></td>
+</tr>
+<tr>
+<td><strong>Transporte renderer↔main</strong></td>
+<td><code>rendererReq</code> · <code>mainResp</code> · <code>app-load-finished</code> · <code>render-finished</code></td>
+</tr>
+<tr>
+<td><strong>Dinámico (no resoluble)</strong></td>
+<td><code>action</code> (send/on/once desde renderer) — <strong>3 operaciones</strong> con canal calculado en runtime</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-validación-de-sender">4.4 Validación de sender</h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+<th>Lectura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Candidatos a validación observados</td>
+<td><strong>2</strong> (mecanismo <code>comparison:!=</code>, <code>expected: null</code>, <strong><code>enforcement: unknown</code></strong>)</td>
+<td>🟠 Solo 2 de 29 handlers tienen observación de validación</td>
+</tr>
+<tr>
+<td>Transmisiones renderer emparejadas</td>
+<td>1 (<code>paired_renderer_transmissions</code>)</td>
+<td>🟢 Sin canales literales sin emparejar</td>
+</tr>
+<tr>
+<td>Ambigüedades</td>
+<td>0</td>
+<td>🟢</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>Lectura honesta (limitación #7 del proveedor):</strong> la ausencia de observaciones en el resto de handlers
+<strong>NO prueba</strong> que no validen — solo que REA no las encontró en sintaxis estático. Ver §6.</p>
+</blockquote>
+<h3 id="45-puente-preload-contextbridge--2-apis-6-miembros">4.5 Puente preload (<code>contextBridge</code>) — 2 APIs, 6 miembros</h3>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Miembros expuestos</th>
+<th><code>unknown_members</code></th>
+<th>Resolución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>electron</code></td>
+<td><code>listenOnce</code> · <code>registerMsgListener</code> · <code>request</code> · <code>sendMessage</code></td>
+<td>0</td>
+<td>sintaxis directa</td>
+</tr>
+<tr>
+<td><code>process</code></td>
+<td><code>type</code> · <code>versions</code></td>
+<td>0</td>
+<td>sintaxis directa</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Superficie mínima y de propósito acotado</strong> — patrón correcto (no se expone <code>require</code>, ni <code>ipcRenderer</code>, ni <code>fs</code>). 🟢</p>
+</blockquote>
+<h3 id="46-candidatos-a-endpoint-y-almacenamiento">4.6 Candidatos a endpoint y almacenamiento</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Hallazgo</th>
+<th>Interpretación tras revisión</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7 × <code>endpoint</code> (candidatos)</td>
+<td><code>lastWinSize</code> · <code>updateCheckIntervalHours</code> · <code>enableStoreBkp</code> · <code>dontCheckUpdates</code> · <code>lastUpdateCheck</code> · <code>enableSpellCheck</code> · <code>isGoogleFontsEnabled</code> — mecanismo <code>call:store.get</code></td>
+<td>🟡 <strong>Falsos positivos candidatos</strong>: son claves de <code>electron-store</code>, <strong>no URLs de red</strong>. REA los marca <code>interpretation: candidate</code>; la revisión manual los descarta como red. <em>(Ejemplo del valor de declarar candidatos en vez de afirmar.)</em></td>
+</tr>
+<tr>
+<td>1 × <code>storage</code></td>
+<td><code>.configuration</code> (fichero de <code>electron-store</code>)</td>
+<td>Persistencia local — revisar cifrado si hubiera datos sensibles (paquete Estándar)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-secretos-embebidos">5. SECRETOS EMBEBIDOS</h2>
+<blockquote>
+<p>⚠️ Este apartado reporta <strong>presencia</strong> de datos sensibles. No se prueba, no se extrae, no se ejecuta acceso.</p>
+</blockquote>
+<p><strong>Barrido léxico sobre la evidencia de ambos runs</strong> (5 familias de patrones):</p>
+<table>
+<thead>
+<tr>
+<th>Patrón</th>
+<th>Coincidencias</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Bearer …</code> (tokens)</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>Formatos de clave (<code>sk-…</code> / <code>AKIA…</code> / <code>ghp_…</code> / <code>xox…</code>)</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>Credenciales en URL (<code>user:pass@host</code>)</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>Asignaciones <code>api_key/secret/token = "…"</code></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>JWT (<code>eyJ….…</code>)</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resultado: 0 secretos detectados en el alcance auditado</strong> (proceso main + 34 MB del asar leídos en run 1).
+El alcance completo del bundle está sujeto a §6.1 (run 1 interrumpido).</p>
+<hr>
+<h2 id="6-límites-y-desconocidos">6. LÍMITES Y DESCONOCIDOS</h2>
+<blockquote>
+<p>🔴 <strong>Sección obligatoria.</strong> Ninguna SaaS de due diligence declara esto. <strong>La transparencia es el producto.</strong></p>
+</blockquote>
+<h3 id="61-limitaciones-del-análisis-declaradas-por-rea">6.1 Limitaciones del análisis (declaradas por REA)</h3>
+<p><strong>Run 1 (asar completo):</strong></p>
+<ol>
+<li>El análisis de código fuente <strong>se interrumpió</strong>: <code>timeout 300000 ms</code> + <code>heap 1.098.907.648 B</code> agotado en <code>drawio/src/main/webapp/js/app.min.js</code> (bundle minificado gigante).</li>
+<li><code>extensions.min.js</code> — timeout propio · <code>dropbox.html</code>, <code>github.html</code>, <code>gitlab.html</code> — <strong>1 cuerpo JS inline cada uno NO analizado</strong> (declarados con nombre).</li>
+<li>Vínculos CommonJS/ESM resueltos <strong>solo dentro del contenedor inventariado</strong>.</li>
+<li>El JavaScript se parseó como <strong>texto inerte — nada se ejecutó</strong>.</li>
+<li><em>«Unavailable facts remain explicit and must not be read as absence»</em> — los hechos no disponibles son explícitos y <strong>no deben leerse como ausencia</strong>.</li>
+<li>Rutas dinámicas u ofuscadas pueden quedar sin resolver.</li>
+</ol>
+<p><strong>Run 2 (proceso main):</strong></p>
+<ol start="7">
+<li>Los canales IPC dinámicos (p. ej. <code>action</code>) <strong>no se emparejan nunca por similitud textual</strong>.</li>
+<li>La identidad de las APIs de Electron sigue alias léxicos verificados — reasignaciones arbitrarias no se evalúan.</li>
+<li><strong>Defaults, alcance y enforcement en runtime quedan sin probar</strong> (análisis estático).</li>
+<li>Las validaciones de sender/origen son <strong>solo observaciones</strong>: REA no afirma que implementen una política de autorización completa.</li>
+</ol>
+<h3 id="62-lo-que-no-se-pudo-determinar">6.2 Lo que NO se pudo determinar</h3>
+<table>
+<thead>
+<tr>
+<th>Pregunta</th>
+<th>Por qué</th>
+<th>Cómo se resuelve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Configuración de seguridad de <code>electron.js:565</code></strong></td>
+<td>Opciones construidas dinámicamente — no literales</td>
+<td>Revisión manual de código (paquete Estándar)</td>
+</tr>
+<tr>
+<td><strong>¿Qué preload carga cada ventana?</strong></td>
+<td><code>preload_entrypoints: 0</code> — referenciado con plantilla dinámica (<code>`${__dirname}/…`</code>)</td>
+<td>Revisión manual del preload + prueba en runtime</td>
+</tr>
+<tr>
+<td><strong>CSP real del renderer</strong></td>
+<td>Vive en HTML fuera del proceso main analizado</td>
+<td>Análisis del HTML/<code>app.min.js</code> con presupuesto mayor</td>
+</tr>
+<tr>
+<td><strong>Versión exacta de Electron dentro del binario</strong></td>
+<td>El manifiesto del asar no la declara; 44.7.0 proviene del lockfile del <strong>tag</strong></td>
+<td>Strings del binario / <code>--version</code> (no ejecutamos)</td>
+</tr>
+<tr>
+<td><strong>Comportamiento en runtime</strong></td>
+<td>Análisis <strong>100 % estático</strong>: nada se ejecutó</td>
+<td>Auditoría dinámica (paquete Pro)</td>
+</tr>
+<tr>
+<td><strong>Artefactos AppImage / Windows / macOS</strong></td>
+<td>Solo se audita el <strong>.deb</strong> (CVE-2026-54672 afecta a builds AppImage)</td>
+<td>Auditar cada artefacto por separado</td>
+</tr>
+<tr>
+<td><strong>¿Los 27 handlers restantes validan sender?</strong></td>
+<td>No se hallaron patrones estáticos (limitación #7 — <strong>no es ausencia</strong>)</td>
+<td>Revisión manual / fuzzing de canales</td>
+</tr>
+<tr>
+<td><strong>¿Hay secretos fuera del alcance leído?</strong></td>
+<td>Run 1 cubrió 34 MB antes de agotar límites</td>
+<td>Reejecución con partición del bundle</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-supuestos-del-análisis">6.3 Supuestos del análisis</h3>
+<ul>
+<li>El <code>.deb</code> descargado de la release oficial <strong>es</strong> el que se despliega (hash <strong>verificado</strong> contra el publicado ✅).</li>
+<li>El <code>package-lock.json</code> del tag refleja la build real (no verificado contra el binario).</li>
+<li>El encargo se hizo en <strong>modo binario</strong> (artefacto publicado). El <strong>modo fuente</strong> (§2.3 de la
+plantilla: compilar el tag y comparar fichero a fichero con el asar) no se aplicó; habría
+reducido el presupuesto de lectura del bundle.</li>
+<li>La versión declarada (32.4.1) corresponde al artefacto (consistente con nombre y manifiesto).</li>
+</ul>
+<h3 id="64-cobertura-declarada-por-familias-de-hechos">6.4 Cobertura declarada (por familias de hechos)</h3>
+<ul>
+<li>Run 1: <strong>12 familias de hechos, todas en estado <code>partial</code></strong> · límites activos: <code>heap 1 GB</code>, <code>timeout 300 s</code>, <code>file ceiling 20.000</code>, <code>node ceiling 100.000</code>.</li>
+<li><strong>92.468 desconocidos registrados</strong> con ID propio (cada uno reconsultable) — la incertidumbre está <strong>contabilizada</strong>, no oculta.</li>
+</ul>
+<h3 id="65-csp-y-html">6.5 CSP y HTML</h3>
+<p>No se emitieron hechos de CSP — <strong>esto no significa que no exista</strong>, significa que estaba fuera del alcance de los dos runs (§6.2).</p>
+<h3 id="66-alcance-de-artefactos">6.6 Alcance de artefactos</h3>
+<p>Solo <code>drawio-amd64-32.4.1.deb</code>. Las builds AppImage/Windows/macOS de la misma release <strong>pueden diferir</strong> (p. ej. CVE-2026-54672 es exclusivo de AppImage).</p>
+<h3 id="67-cruce-cve">6.7 Cruce CVE</h3>
+<p>Consulta de <strong>5 candidatos</strong> el <strong>2026-10-16</strong> en NVD/GHSA/GLAD/Snyk — <strong>no es un escaneo exhaustivo</strong> de las 82 versiones contra todo el catálogo. El paquete Estándar incluye escaneo completo.</p>
+<hr>
+<h2 id="7-evidencia">7. EVIDENCIA</h2>
+<h3 id="71-huellas-de-cada-operación">7.1 Huellas de cada operación</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Operación</th>
+<th>Evidence ID</th>
+<th>Confianza</th>
+<th>Cobertura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>analyze_javascript_application</code> (asar completo)</td>
+<td><code>ev_a94efae81586d359238a5eb1cd34b9a9ed8da7748c3f9a86d4757fe855435ca8</code></td>
+<td><code>derived</code></td>
+<td><code>partial</code> (interrumpido)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>analyze_javascript_application</code> (proceso main)</td>
+<td><code>ev_f0e4202c3b188da10f4be9b3693006b0ba64e3483e7ea100916e388dd413fc2e</code></td>
+<td><code>derived</code></td>
+<td><code>partial</code> (limitaciones §6.1)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>binary_overview</code> (Ghidra — nativo)</td>
+<td><code>ev_9ec17cfca1a869df4352fd6e5db03285c014f0efc2024a30ec924c337c7a22f0</code></td>
+<td><code>derived</code></td>
+<td>10 limitaciones</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-integridad-verificada">7.2 Integridad verificada</h3>
+<table>
+<thead>
+<tr>
+<th>Artefacto</th>
+<th>SHA-256</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>drawio-amd64-32.4.1.deb</code></td>
+<td><code>f4455b3bba3d3b539c3cd069218fc64f0462b1b01610fe8d11acc3ca8566f32b</code> ✅ <em>(coincide con hash oficial)</em></td>
+</tr>
+<tr>
+<td><code>app.asar</code> (raíz run 1)</td>
+<td><code>e64b9650c0b8241ca9a7d33b56386a385bceee63270cec701d3a467347b697e6</code></td>
+</tr>
+<tr>
+<td>Directorio <code>src/main</code> (raíz run 2)</td>
+<td><code>04b32cf796534f828ddb3b57568be1e7e1be27f9f8d43debc924af49b5d19596</code></td>
+</tr>
+<tr>
+<td><code>chrome_crashpad_handler</code> (ELF x86_64)</td>
+<td><code>3e9742b8edaef6779c48e0966b9f433db39e59ee148854312b5a5c8612100a04</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-grafos-e-inventarios-todos-los-ids-encadenados">7.3 Grafos e inventarios (todos los IDs encadenados)</h3>
+<table>
+<thead>
+<tr>
+<th>Objeto</th>
+<th>ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inventario run 1</td>
+<td><code>agm_e0fe639090b97e0e12931fb0440e1c0901c2302d8aed2937c0cda396cf2a50d5</code></td>
+</tr>
+<tr>
+<td>Inventario run 2</td>
+<td><code>agm_7fa81bc6b0c15cc6b72f6653aaded445a9ead21ec858a18227ea75be22b37a14</code></td>
+</tr>
+<tr>
+<td>Grafo aplicación run 1</td>
+<td><code>jag_25dd177b5be54d19217508589793de164ce5e8ea2a0cba52ceeefd420fcd9799</code></td>
+</tr>
+<tr>
+<td>Grafo semántico run 1</td>
+<td><code>jsrg_7814efb457d1aa30a5655a1fc37090f9f7a5c2b7bb4cbfd688af02299634672a</code></td>
+</tr>
+<tr>
+<td>Grafo aplicación run 2</td>
+<td><code>jag_960f4912770a9cafef5baf5d42c847e198ea0f52926680f237e73e05481d594e</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="74-verificación-independiente">7.4 Verificación independiente</h3>
+<p>Cualquier tercero puede reproducir este informe:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 1. Descargar el artefacto oficial y verificar hash</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -LO</span><span style="color:#9ECBFF"> https://github.com/jgraph/drawio-desktop/releases/download/v32.4.1/drawio-amd64-32.4.1.deb</span></span>
+<span class="line"><span style="color:#B392F0">sha256sum</span><span style="color:#9ECBFF"> drawio-amd64-32.4.1.deb</span><span style="color:#6A737D">   # → f4455b3b…  ✅</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 2. Reejecutar el análisis (REA 6.5.0)</span></span>
+<span class="line"><span style="color:#B392F0">rea</span><span style="color:#9ECBFF"> analyze-javascript-application</span><span style="color:#F97583"> &lt;</span><span style="color:#9ECBFF">asar-o-src/mai</span><span style="color:#E1E4E8">n</span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF"> --json</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># …o lanzar el mismo workflow en la nube:</span></span>
+<span class="line"><span style="color:#6A737D">#   albrth647-png/Ghidra → Actions → REA-Audit → rellenar asset_url + sha256_url</span></span></code></pre>
+<h3 id="75-paquete-de-evidencia-de-este-informe">7.5 Paquete de evidencia de este informe</h3>
+<table>
+<thead>
+<tr>
+<th>Fichero</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/albrth647-png/electron-security-audit/blob/main/evidence/evidence-summary.json"><code>evidencia/resumen-evidencia.json</code></a></td>
+<td>Índice verificable de runs, evidencias y hashes</td>
+</tr>
+<tr>
+<td><a href="https://github.com/albrth647-png/electron-security-audit/blob/main/evidence/evidencia-run1-asar.json"><code>evidencia/evidencia-run1-asar.json</code></a></td>
+<td>Extracto compacto run 1 (IDs, stats, 12 limitaciones)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/albrth647-png/electron-security-audit/blob/main/evidence/evidencia-run2-main.json"><code>evidencia/evidencia-run2-main.json</code></a></td>
+<td>Run 2 completo con los <strong>188 nodos tipados</strong> (IPC, ventanas, bridge)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/albrth647-png/electron-security-audit/blob/main/evidence/evidence-native-ghidra.json"><code>evidencia/evidencia-nativa-gidra.json</code></a></td>
+<td>Overview nativo Ghidra (36 segmentos · 5.802 procedimientos · 2.184 strings)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/albrth647-png/electron-security-audit/blob/main/evidence/sbom-drawio-32.4.1.txt"><code>evidencia/sbom-drawio-32.4.1.txt</code></a></td>
+<td>82 paquetes <code>name@version</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/albrth647-png/electron-security-audit/blob/main/evidence/package-drawio-32.4.1.json"><code>evidencia/package-drawio-32.4.1.json</code></a></td>
+<td>Manifiesto del proyecto</td>
+</tr>
+<tr>
+<td><a href="https://github.com/albrth647-png/electron-security-audit/blob/main/evidence/sha256-drawio-amd64-32.4.1.deb.txt"><code>evidencia/sha256-drawio-amd64-32.4.1.deb.txt</code></a></td>
+<td>Hash del artefacto</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="8-recomendaciones-priorizadas">8. RECOMENDACIONES PRIORIZADAS</h2>
+<table>
+<thead>
+<tr>
+<th>Prioridad</th>
+<th>Hallazgo</th>
+<th>Acción recomendada</th>
+<th>Esfuerzo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 <strong>P0</strong></td>
+<td>—</td>
+<td><strong>No hay hallazgos críticos</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>🟠 <strong>P1</strong></td>
+<td>Ventana <code>electron.js:565</code> con opciones <strong>dinámicas no verificables</strong></td>
+<td>Revisar manualmente sus <code>webPreferences</code> y fijarlas como literales</td>
+<td>Bajo</td>
+</tr>
+<tr>
+<td>🟠 <strong>P1</strong></td>
+<td>Solo <strong>2 candidatos</strong> de validación de sender entre 29 handlers</td>
+<td>Auditar la política de validación de canales IPC (paquete Estándar)</td>
+<td>Medio</td>
+</tr>
+<tr>
+<td>🟠 <strong>P1</strong></td>
+<td><code>builder-util-runtime</code> <strong>en 9.7.0</strong> (suelo exacto del fix CVE-2026-54673)</td>
+<td>Fijar <code>≥9.7.0</code> explícitamente y vigilar releases</td>
+<td>Bajo</td>
+</tr>
+<tr>
+<td>🟡 <strong>P2</strong></td>
+<td><code>sandbox</code> declarado solo en 1/5 ventanas</td>
+<td>Declarar <code>sandbox:true</code> explícito en todas las ventanas</td>
+<td>Bajo</td>
+</tr>
+<tr>
+<td>🟡 <strong>P2</strong></td>
+<td>Árbol duplicado: <code>debug</code> ×2 · <code>ms</code> ×2 · <code>semver</code> ×2</td>
+<td>Deduplicar (<code>npm dedupe</code>) y eliminar la línea <code>debug@2.6.9</code></td>
+<td>Bajo</td>
+</tr>
+<tr>
+<td>🟡 <strong>P2</strong></td>
+<td>CSP no evidenciada en este alcance</td>
+<td>Auditar CSP del HTML (paquete Estándar)</td>
+<td>Medio</td>
+</tr>
+<tr>
+<td>⬜ <strong>P3</strong></td>
+<td>Solo el <code>.deb</code> auditado</td>
+<td>Auditar AppImage/Win/macOS de la misma release</td>
+<td>Medio</td>
+</tr>
+<tr>
+<td>⬜ <strong>P3</strong></td>
+<td>Cruce CVE de 5 candidatos</td>
+<td>Escaneo exhaustivo de los 82 paquetes (paquete Estándar)</td>
+<td>Medio</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Regla:</strong> este informe entrega <strong>recomendaciones, no cambios</strong>. La remediación guiada es el
+paquete Estándar (600 USDT) — ver <a href="https://github.com/albrth647-png/electron-security-audit/blob/main/docs/es/proforma.md">proforma</a>.</p>
+</blockquote>
+<hr>
+<h2 id="cierre">CIERRE</h2>
+<blockquote>
+<p>Este informe fue generado con <strong>análisis estático</strong> sobre el artefacto verificado indicado en los metadatos.
+Las secciones <strong>§6</strong> y <strong>§7</strong> documentan explícitamente el alcance, sus límites y la evidencia verificable.
+<strong>El artefacto se analizó en la nube de GitHub Actions del analista</strong> (donde vive Ghidra) — posible
+porque draw.io es <strong>código público</strong>: no hay nada confidencial que exponer, y el run queda
+<strong>publicado</strong> como prueba reproducible de cada cifra. En un encargo con <strong>artefacto privado</strong>, el
+análisis corre en el dispositivo del analista o en un runner <strong>privado</strong>, y el artefacto se elimina
+tras la entrega. En ningún caso el software del cliente se envía a un servicio de escaneo de
+terceros (Snyk, Sonatype, etc.): ver la <a href="https://github.com/albrth647-png/electron-security-audit/blob/main/docs/es/proforma.md">proforma</a> y la <a href="https://github.com/albrth647-png/electron-security-audit/blob/main/docs/es/autorizacion.md">autorización</a>.</p>
+<p><strong>Resultado de la muestra:</strong> 🟢 postura base sólida · 0 CVEs activos en el cruce · 4/5 ventanas
+con configuración correcta verificable · 0 secretos · 7 puntos declarados como no determinados.</p>
+</blockquote>
+<p><strong>Siguiente paso sugerido:</strong> comparar este informe con el de <strong>tu</strong> app Electron/JS —
+<a href="https://github.com/albrth647-png/electron-security-audit/blob/main/docs/es/proforma.md">proforma de 150 USDT</a> · <a href="https://github.com/albrth647-png/electron-security-audit/blob/main/docs/es/autorizacion.md">lo que se firma antes</a>.</p>
+<hr>
+<p><em>Informe generado con REA 6.5.0 + Ghidra 12.1.4 · workflows <code>rea-audit.yml</code> · 2026-10-16</em>
+<em>Plantilla usada: <a href="https://github.com/albrth647-png/electron-security-audit/blob/main/docs/es/plantilla-informe.md">plantilla-informe.md</a> — este documento es su instancia real.</em></p>
+</div></article></main><footer class="border-t border-muted/40"><div class="mx-auto max-w-5xl px-6 py-10 text-sm text-muted"><div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><img src="/auditwithproof-web/brand/wordmark.png" alt="Audit with Proof" width="160" height="36" class="h-8 w-auto"><p class="text-ink">48 h · 150 USDT (USDT o USDC en TRC-20 / BEP-20)</p></div><p class="mt-4">Solo apps <strong class="text-ink">open source</strong>, propias o autorizadas por escrito ·<a href="mailto:florito64.1@gmail.com" class="text-brand hover:underline">florito64.1@gmail.com</a></p><p class="mt-2"><a href="/auditwithproof-web/privacidad/" class="text-brand hover:underline">Privacidad</a>·<a href="/auditwithproof-web/terminos/" class="text-brand hover:underline">Términos del servicio</a></p><p class="mt-2">© 2026 Audit with Proof</p></div></footer></body></html>
