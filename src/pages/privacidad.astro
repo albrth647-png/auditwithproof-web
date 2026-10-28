@@ -1,0 +1,159 @@
+---
+import Base from '../layouts/Base.astro';
+
+const RAW = import.meta.env.BASE_URL;
+const B = RAW.endsWith('/') ? RAW.slice(0, -1) : RAW;
+const ACTUALIZADO = '28 de octubre de 2026';
+---
+
+<Base
+  title="Privacidad — Audit with Proof"
+  description="Qué datos se tratan en esta web y en una auditoría, para qué, cuánto tiempo y cómo pedir su supresión. Sin cookies y sin analítica."
+>
+  <article class="mx-auto max-w-3xl px-6 py-12">
+    <a href={`${B}/`} class="text-sm text-brand hover:underline">← Inicio</a>
+
+    <header class="mt-6 border-b border-muted/40 pb-8">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-brand">
+        Legal
+      </p>
+      <h1 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Privacidad</h1>
+      <p class="mt-3 text-sm text-muted">Última actualización: {ACTUALIZADO}</p>
+    </header>
+
+    <div class="prose prose-invert mt-10 max-w-none">
+      <p>
+        Esta web es la página pública de <strong>Audit with Proof</strong>, un servicio de
+        auditoría de dependencias y riesgo de aplicaciones <strong>Electron/JS</strong>.
+        Lo presta <strong>una sola persona</strong> («el prestador»), que es también quien
+        trata los datos que se describen aquí. Contacto:
+        <a href="mailto:florito64.1@gmail.com">florito64.1@gmail.com</a>.
+      </p>
+
+      <h2>1. Qué NO hace esta web</h2>
+      <p>
+        <strong>No usa cookies</strong>, ni analítica, ni píxeles, ni fuentes o scripts de
+        terceros. No hay formularios, ni cuentas de usuario, ni comentarios. Todo el sitio es
+        HTML estático: al visitarlo no se te identifica ni se te perfila.
+      </p>
+      <p>
+        La web se sirve desde <strong>GitHub Pages</strong>, que como cualquier servidor
+        registra direcciones IP y datos técnicos de la conexión según su propia política. Ese
+        registro no lo controla el prestador y no se usa para nada más.
+      </p>
+
+      <h2>2. Qué datos se tratan</h2>
+      <p>Solo cuando hay una conversación o un encargo:</p>
+      <ul>
+        <li>
+          <strong>Los que me escribes:</strong> nombre, correo o usuario de la red social por la
+          que contactas, y el contenido del mensaje.
+        </li>
+        <li>
+          <strong>Los del encargo:</strong> identificador y <em>hash</em> del artefacto a auditar,
+          la autorización escrita, el alcance acordado y, si aportas datos de tu app o del
+          cliente final, los que decidas incluir.
+        </li>
+        <li>
+          <strong>Los del informe:</strong> hallazgos, evidencia y los límites declarados del
+          análisis.
+        </li>
+        <li>
+          <strong>Los del pago:</strong> el identificador de la transacción en la red que elijas
+          (TRC-20 o BEP-20). Los pagos son públicos en la cadena; el prestador no pide ni
+          necesita datos bancarios.
+        </li>
+      </ul>
+
+      <h2>3. Para qué y con qué base</h2>
+      <ul>
+        <li><strong>Responder a tu consulta</strong> y preparar una propuesta.</li>
+        <li><strong>Ejecutar la auditoría</strong> que has encargado y entregarte el informe.</li>
+        <li><strong>Cumplir obligaciones</strong> contables y fiscales de la facturación.</li>
+      </ul>
+      <p>
+        La base es tu <strong>petición</strong> cuando me escribes, la <strong>ejecución del
+        contrato</strong> cuando hay encargo, y el <strong>cumplimiento legal</strong> para la
+        facturación. No se usa nada para publicidad ni se vende a nadie.
+      </p>
+
+      <h2>4. Cuánto tiempo se conserva</h2>
+      <ul>
+        <li>
+          <strong>Consultas que no acaban en encargo:</strong> hasta 12 meses, para poder
+          retomar la conversación; después se borran.
+        </li>
+        <li>
+          <strong>Artefactos que me entregas</strong> (instaladores, código, binarios): se
+          analizan de forma <strong>estática y de solo lectura</strong> en un entorno privado y se
+          <strong>borran al entregar el informe</strong>, salvo que pidas expresamente que se
+          conserven para una revisión posterior.
+        </li>
+        <li>
+          <strong>Informe entregado:</strong> se conserva mientras exista la relación y hasta 12
+          meses después, para poder responder a una duda o a un derecho de réplica.
+        </li>
+        <li>
+          <strong>Facturación:</strong> el plazo que exija la ley aplicable.
+        </li>
+      </ul>
+
+      <h2>5. Con quién se comparte</h2>
+      <p>
+        <strong>Con nadie.</strong> No hay venta, cesión ni intercambio de datos. Los únicos
+        intervinientes son los proveedores técnicos imprescindibles:
+      </p>
+      <ul>
+        <li><strong>GitHub</strong> (alojamiento de este sitio y de los ejecutables de análisis).</li>
+        <li><strong>El proveedor de correo</strong> del buzón de contacto.</li>
+        <li><strong>La red de pago</strong> que elijas, si hay encargo (público por diseño).</li>
+      </ul>
+      <p>
+        Si un cliente exige firmar un <strong>NDA</strong> o una cláusula de confidencialidad, se
+        firma y prevalece sobre lo que diga esta página.
+      </p>
+
+      <h2>6. Confidencialidad y publicación</h2>
+      <p>
+        El contenido de una auditoría es <strong>material del cliente</strong>. No se publica
+        nada —ni el nombre, ni un hallazgo, ni una captura— sin <strong>autorización
+        escrita</strong>. Los casos que ves en <a href={`${B}/casos/`}>/casos/</a> son de
+        aplicaciones <strong>open source</strong>, de <strong>mi propia</strong> autoría o
+        auditadas con <strong>permiso escrito</strong>, y siempre con derecho de réplica abierto.
+      </p>
+
+      <h2>7. Tus derechos</h2>
+      <p>
+        Puedes pedir <strong>acceso, rectificación, supresión, oposición, limitación y
+        portabilidad</strong> de tus datos, y retirar tu consentimiento, escribiendo a
+        <a href="mailto:florito64.1@gmail.com">florito64.1@gmail.com</a>. Se responde en un plazo
+        máximo de 30 días. Si consideras que no se ha atendido bien, puedes reclamar ante la
+        autoridad de protección de datos de tu país.
+      </p>
+
+      <h2>8. Seguridad</h2>
+      <p>
+        El acceso al buzón y a los artefactos está restringido a una persona, con doble factor
+        cuando el proveedor lo permite. Los análisis se ejecutan en un entorno privado, sin
+        escritura sobre el artefacto, y los artefactos se borran al terminar. Los secretos
+        (claves, tokens) nunca se publican ni se comparten.
+      </p>
+
+      <h2>9. Menores y ámbito</h2>
+      <p>
+        El servicio es <strong>profesional (B2B)</strong> y no está dirigido a menores de 18 años.
+        Las auditorías se prestan a distancia, sin atención presencial.
+      </p>
+
+      <h2>10. Cambios</h2>
+      <p>
+        Si esta página cambia, se actualiza la fecha de arriba. Los cambios no se aplican
+        retroactivamente a un encargo ya firmado.
+      </p>
+
+      <p class="text-sm text-muted">
+        Ver también los <a href={`${B}/terminos/`}>términos del servicio</a>.
+      </p>
+    </div>
+  </article>
+</Base>

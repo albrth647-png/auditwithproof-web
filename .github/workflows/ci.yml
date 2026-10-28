@@ -34,25 +34,32 @@ jobs:
         with:
           node-version: 22.23.4
 
-      # Sin package-lock.json todavía (el build nunca corre en el móvil):
-      # npm install en vez de npm ci. Deuda anotada en WEB.md §8.
+      # `npm ci` exige package-lock.json (existe desde el 2026-10-28, generado en
+      # un build real) y falla si no coincide con package.json → builds
+      # deterministas en vez de "lo que salga hoy".
       - name: Instalar dependencias
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Build de Astro
         run: npm run build
 
       # Sin .nojekyll, Jekyll descarta `_astro/` (CSS/JS con hash) y el sitio
-      # sale sin estilos. Se crea en los DOS jobs: `upload-artifact@v4` no sube
-      # ficheros ocultos por defecto, así que el del build no viaja.
+      # sale sin estilos.
       - name: Marcar dist como estático (Jekyll off)
         run: touch dist/.nojekyll
+
+      # `upload-artifact@v4` NO sube ficheros ocultos: antes el .nojekyll no
+      # viajaba y había que recrearlo en el job de deploy (si alguien tocaba
+      # ese job, el sitio se quedaba sin CSS). Se sube un tar.gz: preserva los
+      # ocultos y el deploy extrae exactamente lo que se construyó.
+      - name: Empaquetar dist (preserva ficheros ocultos)
+        run: tar -czf dist.tar.gz -C dist .
 
       - name: Subir dist como artefacto (revisable sin publicar)
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist
+          path: dist.tar.gz
           retention-days: 7
 
   deploy:
@@ -68,7 +75,16 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist
+          path: .
+
+      - name: Extraer dist
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          tar -xzf dist.tar.gz -C dist
+          # Si el .nojekyll no está, NO se publica: sin él Pages sirve el sitio
+          # sin CSS. Falla en el deploy, no en el navegador del visitante.
+          test -f dist/.nojekyll
 
       # `dist/` es un directorio suelto: `git init` NO hereda remote ni las
       # credenciales del checkout → el remoto se pone a mano con el token del run.
@@ -78,8 +94,6 @@ jobs:
         run: |
           set -euo pipefail
           cd dist
-          # El artefacto no trae ocultos (upload-artifact@v4): se recrea aquí.
-          touch .nojekyll
           git init -q
           git checkout -q -b gh-pages
           git config user.name 'Audit with Proof'
