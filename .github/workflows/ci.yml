@@ -43,7 +43,8 @@ jobs:
         run: npm run build
 
       # Sin .nojekyll, Jekyll descarta `_astro/` (CSS/JS con hash) y el sitio
-      # sale sin estilos. El fichero viaja dentro del propio artefacto.
+      # sale sin estilos. Se crea en los DOS jobs: `upload-artifact@v4` no sube
+      # ficheros ocultos por defecto, así que el del build no viaja.
       - name: Marcar dist como estático (Jekyll off)
         run: touch dist/.nojekyll
 
@@ -77,6 +78,8 @@ jobs:
         run: |
           set -euo pipefail
           cd dist
+          # El artefacto no trae ocultos (upload-artifact@v4): se recrea aquí.
+          touch .nojekyll
           git init -q
           git checkout -q -b gh-pages
           git config user.name 'Audit with Proof'
